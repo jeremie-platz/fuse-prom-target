@@ -9,11 +9,6 @@ import Fuse from "./fuse.node.commonjs2.js";
 const fuse = new Fuse(
   "https://arb-mainnet.g.alchemy.com/v2/rNfYbx5O5Ng09hw9s9YE-huxzVNaWWbX"
 );
-const alcxStakingAccount = "0x5ea4a9a7592683bf0bc187d6da706c6c4770976f";
-const alcxStakingContract = new fuse.web3.eth.Contract(
-  require("../abis/StakingPools.json"),
-  "0xab8e74017a8cc7c15ffccd726603790d26d7deca"
-);
 
 let twaps = new Gauge({
   name: "fuse_twaps",
@@ -88,26 +83,6 @@ let poolAssetsFeesUSD = new Gauge({
   labelNames: ["id", "symbol"] as const
 });
 
-let stakedALCXUSD = new Gauge({
-  name: "fuse_staked_alcx_usd",
-  help: "Stores how much protocol controlled ALCX is currently being staked."
-});
-
-let stakedALCXUnclaimedUSD = new Gauge({
-  name: "fuse_staked_alcx_unclaimed_usd",
-  help: "Stores how much protocol controlled ALCX is claimable from staking."
-});
-
-let stakedALCXAmount = new Gauge({
-  name: "fuse_staked_alcx_amount",
-  help: "Stores how much protocol controlled ALCX is currently being staked."
-});
-
-let stakedALCXUnclaimedAmount = new Gauge({
-  name: "fuse_staked_alcx_unclaimed_amount",
-  help: "Stores how much protocol controlled ALCX is claimable from staking."
-});
-
 export interface FuseAsset {
   cToken: string;
 
@@ -141,7 +116,6 @@ type Task =
   | "liquidations"
   | "user_leverage"
   | "reserves_fees"
-  | "staked_alcx"
   | "borrowers";
 
 let lastRun: { [key in Task]: number } = {
@@ -150,7 +124,6 @@ let lastRun: { [key in Task]: number } = {
   user_leverage: 0,
   borrowers: 0,
   reserves_fees: 0,
-  staked_alcx: 0
 };
 
 function runEvery(key: Task, seconds: number, instantLastRunUpdate?: boolean) {
@@ -339,33 +312,8 @@ async function eventLoop() {
               });
           }
 
-          //////////////// Staked ALCX ////////////////
 
-          if (
-            asset.underlyingToken.toLowerCase() ===
-              "0xdbdb4d16eda451d0503b854cf79d55697f90c8df".toLowerCase() &&
-            runEvery("staked_alcx", 600 /* 10 minutes */, true)
-          ) {
-            alcxStakingContract.methods
-              .getStakeTotalDeposited(alcxStakingAccount, "1")
-              .call()
-              .then(staked => {
-                stakedALCXUSD.set(
-                  ((staked * asset.underlyingPrice) / 1e36) * ethPrice
-                );
-                stakedALCXAmount.set(staked / 1e18);
-              });
-
-            alcxStakingContract.methods
-              .getStakeTotalUnclaimed(alcxStakingAccount, "1")
-              .call()
-              .then(unclaimed => {
-                stakedALCXUnclaimedUSD.set(
-                  ((unclaimed * asset.underlyingPrice) / 1e36) * ethPrice
-                );
-                stakedALCXUnclaimedAmount.set(unclaimed / 1e18);
-              });
-          }
+          
         }
       });
 
