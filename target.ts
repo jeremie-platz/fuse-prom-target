@@ -7,7 +7,7 @@ import fetch from "node-fetch";
 import Fuse from "./fuse.node.commonjs2.js";
 
 const fuse = new Fuse(
-  "https://eth-mainnet.alchemyapi.io/v2/dBZwIrYUWCOiGx_fbA-s1xp4gABRir5A"
+  "https://arb-mainnet.g.alchemy.com/v2/rNfYbx5O5Ng09hw9s9YE-huxzVNaWWbX"
 );
 const alcxStakingAccount = "0x5ea4a9a7592683bf0bc187d6da706c6c4770976f";
 const alcxStakingContract = new fuse.web3.eth.Contract(

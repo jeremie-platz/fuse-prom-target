@@ -2,7 +2,8 @@
     "compilerOptions": {
       "target": "es5",
       "lib": [
-        "esnext"
+        "esnext",
+        "dom"
       ],
       "rootDir": "./",
       "outDir": "./build",
