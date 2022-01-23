@@ -2,7 +2,7 @@ import express from "express";
 import fetch from "node-fetch";
 
 const app = express();
-const port = 1337;
+const port = 1339;
 
 let cache: string;
 let lastFetchFailure: number = 0;
@@ -13,12 +13,12 @@ function hasBeen5Minutes(startTime: number) {
 
 async function fetchAndCacheWithFallback() {
   try {
-    const { lastRestart } = await fetch("http://localhost:1336/ops", {
+    const { lastRestart } = await fetch("http://localhost:1338/ops", {
       timeout: 1000 // 1 second timeout.
     }).then(res => res.json());
 
     if (hasBeen5Minutes(lastRestart) && hasBeen5Minutes(lastFetchFailure)) {
-      cache = await fetch("http://localhost:1336/metrics", {
+      cache = await fetch("http://localhost:1338/metrics", {
         timeout: 5000 // 5 second timeout.
       }).then(res => res.text());
     } else {

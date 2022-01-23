@@ -599,7 +599,7 @@
           {
             "matcher": {
               "id": "byName",
-              "options": "fuse_userLeverage{id=\"18\", instance=\"localhost:1337\", job=\"prometheus\", level=\"liquidatable\"}"
+              "options": "fuse_userLeverage{id=\"18\", instance=\"localhost:1339\", job=\"prometheus\", level=\"liquidatable\"}"
             },
             "properties": [
               {
