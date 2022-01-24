@@ -329,7 +329,7 @@ async function eventLoop() {
 
     /////////////////// TWAPS //////////////////
 
-    fetch(`https://api.rari.capital/fuse/twaps/arbitrum`)
+    fetch(`https://api.rari.capital/fuse/twaps`)
       .then(res => res.json())
       .then(data => {
         for (const twap of Object.values(data) as {
