@@ -11,74 +11,74 @@ const fuse = new Fuse(
 );
 
 let twaps = new Gauge({
-  name: "fuse_twaps",
+  name: "fuse_arbitrum_twaps",
   help: "Stores if Fuse TWAPs need updating. 0 indicates no, 1 indicates yes.",
   labelNames: ["ticker"] as const
 });
 
 let poolAssetsInterestRate = new Gauge({
-  name: "fuse_pool_assets_interest_rate",
+  name: "fuse_arbitrum_pool_assets_interest_rate",
   help: "Stores the interest rates of each asset in each pool.",
   // Side: borrow, supply
   labelNames: ["id", "symbol", "side"] as const
 });
 
 let poolRSS = new Gauge({
-  name: "fuse_pool_rss",
+  name: "fuse_arbitrum_pool_rss",
   help: "Stores the RSS score of each pool.",
   labelNames: ["id"] as const
 });
 
 let poolSuppliedAssetsAmount = new Gauge({
-  name: "fuse_pool_assets_supply_amount",
+  name: "fuse_arbitrum_pool_assets_supply_amount",
   help: "Stores how much of each asset is supplied in each pool.",
   labelNames: ["id", "symbol"] as const
 });
 
 let poolBorrowedAssetsAmount = new Gauge({
-  name: "fuse_pool_assets_borrow_amount",
+  name: "fuse_arbitrum_pool_assets_borrow_amount",
   help: "Stores how much of each asset is borrowed in each pool.",
   labelNames: ["id", "symbol"] as const
 });
 
 let poolSuppliedAssetsUSD = new Gauge({
-  name: "fuse_pool_assets_supply_usd",
+  name: "fuse_arbitrum_pool_assets_supply_usd",
   help: "Stores how much of each asset is supplied in each pool.",
   labelNames: ["id", "symbol"] as const
 });
 
 let poolBorrowedAssetsUSD = new Gauge({
-  name: "fuse_pool_assets_borrow_usd",
+  name: "fuse_arbitrum_pool_assets_borrow_usd",
   help: "Stores how much of each asset is borrowed in each pool.",
   labelNames: ["id", "symbol"] as const
 });
 
 let poolAssetLiquidations = new Gauge({
-  name: "fuse_pool_assets_liquidations",
+  name: "fuse_arbitrum_pool_assets_liquidations",
   help: "Stores how many liquidations have been performed on each asset in a each pool.",
   labelNames: ["id", "symbol"] as const
 });
 
 let poolAssetsReservesAmount = new Gauge({
-  name: "fuse_pool_assets_reserves_amount",
+  name: "fuse_arbitrum_pool_assets_reserves_amount",
   help: "Stores how much of each asset is in reserves in each pool.",
   labelNames: ["id", "symbol"] as const
 });
 
 let poolAssetsReservesUSD = new Gauge({
-  name: "fuse_pool_assets_reserves_usd",
+  name: "fuse_arbitrum_pool_assets_reserves_usd",
   help: "Stores how much of each asset is in reserves in each pool.",
   labelNames: ["id", "symbol"] as const
 });
 
 let poolAssetsFeesAmount = new Gauge({
-  name: "fuse_pool_assets_fees_amount",
+  name: "fuse_arbitrum_pool_assets_fees_amount",
   help: "Stores how much of each asset has been taken as fees in each pool.",
   labelNames: ["id", "symbol"] as const
 });
 
 let poolAssetsFeesUSD = new Gauge({
-  name: "fuse_pool_assets_fees_usd",
+  name: "fuse_arbitrum_pool_assets_fees_usd",
   help: "Stores how much of each asset has been taken as fees in each pool.",
   labelNames: ["id", "symbol"] as const
 });
