@@ -296,10 +296,10 @@ async function eventLoop() {
               ),
               asset.cToken
             );
-
+               
             cToken
               .getPastEvents("LiquidateBorrow", {
-                fromBlock: 12060000,
+                fromBlock: 4948210,
                 toBlock: "latest"
               })
               .then(events => {
@@ -310,6 +310,7 @@ async function eventLoop() {
                   );
                 }
               });
+              
           }
 
 
@@ -329,7 +330,7 @@ async function eventLoop() {
 
     /////////////////// TWAPS //////////////////
 
-    fetch(`https://api.rari.capital/fuse/twaps`)
+    fetch(`https://api.rari.capital/fuse/twaps/arbitrum`)
       .then(res => res.json())
       .then(data => {
         for (const twap of Object.values(data) as {
